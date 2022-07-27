@@ -4,7 +4,7 @@ const db = require('../../db/connection');
 const inputCheck = require('../../utils/inputCheck')
 
 router.get('/employees', (req, res) => {
-    const sql = `SELECT employess.*, employess.name 
+    const sql = `SELECT employees.*, employees.name 
                   AS employee_name 
                   FROM employees 
                   LEFT JOIN departments 
