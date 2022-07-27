@@ -23,3 +23,5 @@ router.get('/roles', (req, res) => {
       });
     });
   });
+
+  module.exports = router;
