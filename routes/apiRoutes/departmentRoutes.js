@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../db/connection');
 
-// Get all parties
+// Get all departments
 router.get('/departments', (req, res) => {
     const sql = `SELECT * FROM departments`;
   
@@ -18,7 +18,7 @@ router.get('/departments', (req, res) => {
     });
   });
 
-  // Get single party
+  // Get single department
 router.get('/departments/:id', (req, res) => {
     const sql = `SELECT * FROM departments WHERE id = ?`;
     const params = [req.params.id];
@@ -32,6 +32,27 @@ router.get('/departments/:id', (req, res) => {
         message: 'success',
         data: row
       });
+    });
+  });
+
+  // Delete a department
+router.delete('/departments/:id', (req, res) => {
+    const sql = `DELETE FROM departments WHERE id = ?`;
+  
+    db.query(sql, req.params.id, (err, result) => {
+      if (err) {
+        res.status(400).json({ error: res.message });
+      } else if (!result.affectedRows) {
+        res.json({
+          message: 'Department not found'
+        });
+      } else {
+        res.json({
+          message: 'deleted',
+          changes: result.affectedRows,
+          id: req.params.id
+        });
+      }
     });
   });
 

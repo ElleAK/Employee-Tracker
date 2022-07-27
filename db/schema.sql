@@ -8,7 +8,7 @@ CREATE TABLE departments (
 );
 
 CREATE TABLE roles (
-    id INTEGER PRIMARY KEY,
+    role_id INTEGER PRIMARY KEY,
     title VARCHAR(30) NOT NULL,
     salary VARCHAR(30) NOT NULL,
     department_id INTEGER NOT NULL
